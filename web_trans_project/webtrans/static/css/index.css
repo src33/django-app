@@ -1,0 +1,115 @@
+/* h1{
+    color: rgb(0, 166, 255);
+    text-align: center;
+    font-family: monospace;
+} */
+body{
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10%;
+    background-color: rgb(230, 248, 255);
+}
+.main{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 90rem;
+}
+#myForm{
+    display: flex;
+    flex-direction: column;
+}
+.urlcont{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.urlcont label,label{
+    /* color: blue; */
+    font-family: monospace;
+    font-size: x-large;
+    padding-bottom: 2%;
+}
+.urlcont input[type='text']{
+    margin-bottom: 5px;
+    
+    
+}
+.fields {
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgb(157, 54, 54); */
+    /* box-shadow: 5px 5px 7px #1d1d1d; */
+    width: 25rem;
+    height: auto;
+    padding: 5%;
+}
+#textbox-container, #tag-container, #div-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 100%;
+    overflow: auto;
+    max-height: 150px;
+    /* background-color: aqua; */
+    /* padding: 2%; */
+}
+.Addlangbutn, .Addtagbutn, .submitbutn{
+    /* color: aqua; */
+    height: 35px;
+    box-shadow: 2px 2px 3px #7494a5;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: monospace;
+    font-size: large;
+    font-weight: 600;
+    /* background-color: aqua; */
+    
+}
+
+.add{
+    display: flex;
+    justify-content: center;
+    padding: 2%;   
+}
+.urlcont input[type='text'],#textbox-container input[type="text"], #tag-container input[type="text"], #div-container input[type="text"] {
+    margin-bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    height: 35px;
+    border: 1.5px solid #7494a5;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 3px #7494a5;
+    font-size:small;
+    font-weight: 200;
+    padding: 8px;
+}
+
+.submitbutn{
+    /* background-color: aqua; */
+    width: 100%;
+}
+.logo{
+    margin: 0;
+    width: 30rem;
+    height: auto;
+    padding-top: 2%;
+    padding-left: 1%;
+    /* background-color: aqua; */
+}
+.bg{
+    position: absolute; /* Set the position of the image to absolute */
+    top: 0; /* Adjust the top position as needed */
+    left: 0; /* Adjust the left position as needed */
+    z-index: -1; /* Set a negative z-index to place the image behind the container */
+    width: 100%; /* Adjust the width of the image to fill the container */
+    height: 100%; /* Adjust the height of the image to fill the container */
+    object-fit: cover;
+}
+

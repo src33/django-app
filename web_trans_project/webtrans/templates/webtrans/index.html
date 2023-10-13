@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WebTrans</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="main">
+        <img class="bg" src="{% static 'img/homebgedt.jpg' %}">
+        <img class='logo' src="{% static 'img/logopng.png' %}">
+        <div class="fields">
+            <form id="myForm" action="/test/" method="post">
+                {% csrf_token %}
+                <div class="urlcont">
+                    <label >URL</label>
+                    <input type="text" placeholder="enter the url here..." id="url" name="url" required>
+                </div>
+                <label>Languages</label>
+                <div id="textbox-container" class="textbox-container">
+                    <input type="text" placeholder="enter the language here (english, spanish,etc)..." name="lang" required>
+                    <input type="hidden" name="lang_list" id="lang_list">
+                    <!-- <i id="add-textbox-btn" class="fa fa-plus-circle addbuttn" aria-hidden="true"></i> -->
+                    <div id="add-textbox-btn" class="add"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                      </svg></div>
+                </div>
+                
+                <label>Tags</label>
+                <div id="tag-container">
+                    <input type="text" placeholder="enter the tags here (h1, h2, span, p,etc)..." name="tag" required>
+                    <input type="hidden" name="tag_list" id="tag_list">
+                    <div id="add-tag-btn" class="add"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                      </svg></div>
+                </div>
+                <label>div-classes</label>
+                <div id="div-container">
+                    <input type="text" placeholder="enter the div-class name or a part of it here..." name="div">
+                    <input type="hidden" name="div_list" id="div_list">
+                    <div id="add-div-btn" class="add"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                      </svg></div>
+                </div>
+                <input type="submit" class='submitbutn' value="Submit">
+            </form>
+        </div>    
+    </div>
+</body>
+<script>
+    
+    var addButton = document.getElementById("add-textbox-btn");
+    var container = document.getElementById("textbox-container");
+    var form = document.getElementById("myForm");
+    var langListInput = document.getElementById("lang_list");
+
+    addButton.addEventListener("click", function() {
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "lang";
+        input.placeholder = "enter the language here...";
+        input.required = true;
+        container.insertBefore(input, addButton);
+
+        // update the lang_list input field value
+        var langValues = getLangValues();
+        langListInput.value = langValues.join(",");
+    });
+
+    // function to get an array of the current lang values
+    function getLangValues() {
+        var inputBoxes = document.querySelectorAll('input[name="lang"]');
+        var langValues = [];
+        for (var i = 0; i < inputBoxes.length; i++) {
+            var langValue = inputBoxes[i].value;
+            langValues.push(langValue);
+        }
+        return langValues;
+    }
+
+    // for tags
+    var addtagButton = document.getElementById("add-tag-btn");
+    var tagcontainer = document.getElementById("tag-container");
+    // var form = document.getElementById("myForm");
+    var tagListInput = document.getElementById("tag_list");
+
+    addtagButton.addEventListener("click", function() {
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "tag";
+        input.placeholder = "enter the tag here...";
+        input.required = true;
+        tagcontainer.insertBefore(input, addtagButton);
+
+        // update the lang_list input field value
+        var tagValues = gettagValues();
+        tagListInput.value = tagValues.join(",");
+    });
+
+    // function to get an array of the current lang values
+    function gettagValues() {
+        var inputBoxes = document.querySelectorAll('input[name="tag"]');
+        var tagValues = [];
+        for (var i = 0; i < inputBoxes.length; i++) {
+            var tagValue = inputBoxes[i].value;
+            tagValues.push(tagValue);
+        }
+        return tagValues;
+    }
+
+    var adddivButton = document.getElementById("add-div-btn");
+    var divcontainer = document.getElementById("div-container");
+    // var form = document.getElementById("myForm");
+    var divListInput = document.getElementById("div_list");
+
+    adddivButton.addEventListener("click", function() {
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "div";
+        input.placeholder = "enter the div-class here...";
+        // input.required = true;
+        divcontainer.insertBefore(input, adddivButton);
+
+        // update the lang_list input field value
+        var divValues = getdivValues();
+        divListInput.value = divValues.join(",");
+    });
+
+    // function to get an array of the current lang values
+    function getdivValues() {
+        var inputBoxes = document.querySelectorAll('input[name="div"]');
+        var divValues = [];
+        for (var i = 0; i < inputBoxes.length; i++) {
+            var divValue = inputBoxes[i].value;
+            divValues.push(divValue);
+        }
+        return divValues;
+    }
+
+    // update the lang_list input field value on form submit
+    form.addEventListener("submit", function() {
+        var langValues = getLangValues();
+        langListInput.value = langValues.join(",");
+        var tagValues = gettagValues();
+        tagListInput.value = tagValues.join(",");
+        var divValues = getdivValues();
+        divListInput.value = divValues.join(",");
+    });
+    console.log(langListInput)
+    console.log(tagListInput)
+    console.log(divListInput)
+  </script>
+  
+</html>
